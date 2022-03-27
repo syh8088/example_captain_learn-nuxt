@@ -6,8 +6,8 @@
         <NuxtLink to="/main">메인 페이지</NuxtLink>
         <NuxtLink to="/product">상품 페이지</NuxtLink>
       </header>
+      <Nuxt />
   </div>
-  <!-- <Nuxt /> -->
 </template>
 
 <script>

@@ -13,7 +13,8 @@ module.exports = {
   // add your custom rules here
   rules: {
     "vue/multi-word-component-names": ["error", {
-      "ignores": ["default", "product", "main"]
-    }]
+      "ignores": ["default", "product", "main", "error", "index"]
+    }],
+    // "vue/multi-word-component-names": 'off'
   },
 }

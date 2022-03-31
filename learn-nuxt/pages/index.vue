@@ -2,10 +2,12 @@
     <!-- <ProductList></ProductList> -->
     <div class="app">
       <main>
-        <div>
-          <input type="text" />
-        </div>
-
+        <!-- :search-keyword="searchKeyword" 
+        @input="updateSearchKeword" -->
+        <SearchInput 
+          v-model="searchKeyword"
+          @search="searchProducts"
+        ></SearchInput>
         <ul>
           <li
             v-for="product in products"
@@ -25,9 +27,12 @@
 
 <script>
 import axios from 'axios';
+import SearchInput from '@/components/SearchInput.vue';
+import { fetchProductsByKeyword } from '~/api';
 // import ProductList from '~/components/ProductList.vue';
 
 export default {
+  components: { SearchInput },
   // components: { ProductList },
 
     async asyncData() {
@@ -44,7 +49,7 @@ export default {
     },
     data() {
       return {
-        products: []
+        searchKeyword: '',
       }
     },
 
@@ -62,6 +67,19 @@ export default {
       routeToCartPage() {
         this.$router.push('/cart')
       },
+      updateSearchKeword(keyword) {
+        this.searchKeyword = keyword;
+      },
+      async searchProducts() {
+        const response = await fetchProductsByKeyword(this.searchKeyword);
+        console.log("searchProducts -> response", response)
+        this.products = response.data.map((item) => {
+          return {
+            ...item,
+            imageUrl: `${item.imageUrl}?random=${Math.random()}`,
+          }
+        });
+      }
     },
 // async created() {
 //   }

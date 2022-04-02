@@ -20,6 +20,7 @@
               <span>{{ product.price }}</span>
           </li>
         </ul>
+        <div class="cart-wrapper" @click="routeToCartPage">장바구니 바로가기</div>
       </main>
     
     </div>

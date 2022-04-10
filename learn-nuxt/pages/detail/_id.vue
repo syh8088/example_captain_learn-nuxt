@@ -26,6 +26,33 @@ export default {
         const product = response.data;
         return { product };
     },
+    head() {
+      return {
+          title: `Shopping Item Detail - ${this.product.name}`,
+          meta: [
+              {
+                hid: 'description',
+                name: 'description',
+                content: `이 상품은 ${this.product.name}입니다.`,
+              },
+              {
+                hid: 'og:title',
+                property: 'og:title',
+                content: '상품 상세 페이지'
+              },
+              {
+                hid: 'og:description',
+                property: 'og:description',
+                content: '상품 상세 정보를 확인해보세요'
+              },
+              {
+                hid: 'og:image',
+                property: 'og:iamge',
+                content: `${this.product.imageUrl}`
+              }
+            ],
+          }
+    },
     // created() {
     //     const id = this.$route.params.id;
     // }
